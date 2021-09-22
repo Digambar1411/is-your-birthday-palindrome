@@ -1,11 +1,20 @@
 function reverseString(str){
     var reverseStr=str.split("").reverse().join("");
-    return reverseStr
-
-
+    return reverseStr;
+    
 }
 
-console.log(reverseString("hello"));
-console.log(reverseString("10012"));
-console.log(reverseString("mynameis"));
-console.log(reverseString("dad"));
+function checkPalindrome(str){
+    var revStr=reverseString(str);
+    if(revStr===str){
+        return "palindrome";
+    }
+    else{
+        return "Not palindrome";
+    }
+    
+
+}
+console.log(checkPalindrome("hello"));
+console.log(checkPalindrome("dad"));
+
