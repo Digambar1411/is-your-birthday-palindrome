@@ -37,13 +37,23 @@ function convertDateToStr(date){
 }
 
 
+function getAllDateFormat(date){
+    var dateStr=convertDateToStr(date);
+    var ddmmyyyy=dateStr.day+dateStr.month+dateStr.year;
+    var mmddyyyy= dateStr.month+dateStr.day+dateStr.year;
+    var yyyymmdd=dateStr.year+dateStr.month+dateStr.day;
+    var ddmmyy=dateStr.day+dateStr.month+dateStr.year.slice(-2);
+    var mmddyy=dateStr.month+dateStr.day+dateStr.year.slice(-2);
+    var yymmdd=+dateStr.year.slice(-2)+dateStr.month+dateStr.day;
+
+    var allDateFormats=[ddmmyyyy,mmddyyyy,yyyymmdd,ddmmyy,mmddyy,yymmdd];
+    return allDateFormats
+}
+
 var date1  = {
-    day:14,
+    day:10,
     month:9,
     year:2020,
 };
 
-
-console.log(convertDateToStr(date1));
-
-
+console.log(getAllDateFormat(date1));
