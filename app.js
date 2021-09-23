@@ -4,15 +4,12 @@ function reverseString(str){
     
 }
 
-function checkPalindrome(str){
+function isPalindrome(str){
     var revStr=reverseString(str);
     if(revStr===str){
-        return "palindrome";
+        return true
     }
-    else{
-        return "Not palindrome";
-    }    
-
+    return false    
 }
 
 
@@ -52,8 +49,25 @@ function getAllDateFormat(date){
 
 var date1  = {
     day:10,
-    month:9,
-    year:2020,
+    month:11,
+    year:2001,
 };
 
-console.log(getAllDateFormat(date1));
+console.log(getAllDateFormat(date1))
+
+function checkPalidromeForAllFormats(date1){
+    var allDates=getAllDateFormat(date1);
+    var flag=false;
+    for (var i=0; i<allDates.length; i++){
+        if(isPalindrome(allDates[i])){
+            var flag = true;
+            break;
+        }
+        
+    }
+    return flag;
+}
+
+
+console.log(checkPalidromeForAllFormats(date1));
+
