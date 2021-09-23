@@ -143,7 +143,7 @@ function getNextPalindrome(date){
 
 var bDate=document.querySelector("#b-date");
 var showBtn =document.querySelector("#show-btn");
-var errorMsg=document.querySelector("#err-msg");
+var errorMsg=document.querySelector("#error-msg");
 var result=document.querySelector("#output");
 
 showBtn.addEventListener("click", clickHandler);
@@ -174,7 +174,7 @@ function clickHandler(){
         }
     }
     else{
-        errorMsg.innerText="Please select the date birthdate";
+        errorMsg.innerText="Please select the birthdate";
         errorMsg.style.display="block";
     }
 }
