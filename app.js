@@ -47,14 +47,8 @@ function getAllDateFormat(date){
     return allDateFormats
 }
 
-var date1  = {
-    day:01,
-    month:01,
-    year:2020,
-};
-
-function checkPalidromeForAllFormats(date1){
-    var allDates=getAllDateFormat(date1);
+function checkPalindromeForAllFormats(date){
+    var allDates=getAllDateFormat(date);
     var flag=false;
     for (var i=0; i<allDates.length; i++){
         if(isPalindrome(allDates[i])){
@@ -67,6 +61,7 @@ function checkPalidromeForAllFormats(date1){
     return flag;
 
 }
+
 function isLeapYear(year){
     if(year%400===0){
         return true;
@@ -133,7 +128,7 @@ function getNextPalindrome(date){
     count=0;
     while(1){
         count+=1;
-        var isPalindrome = checkPalidromeForAllFormats(nextDate);
+        var isPalindrome = checkPalindromeForAllFormats(nextDate);
         if(isPalindrome){
             break;
 
@@ -145,7 +140,47 @@ function getNextPalindrome(date){
     return [count, nextDate];
 }
 
-console.log(getNextPalindrome(date1));
+
+var bDate=document.querySelector("#b-date");
+var showBtn =document.querySelector("#show-btn");
+var errorMsg=document.querySelector("#err-msg");
+var result=document.querySelector("#output");
+
+showBtn.addEventListener("click", clickHandler);
+
+
+function clickHandler(){
+    errorMsg.style.display="none";
+    if(bDate.value!==''){
+        var bDateStr= bDate.value;
+        
+        var listOfbDateStr=bDateStr.split("-");
+        var date={
+            day:Number(listOfbDateStr[2]),
+            month:Number(listOfbDateStr[1]),
+            year:Number(listOfbDateStr[0]),
+
+        };
+   
+        var isbdatePalindrome = checkPalindromeForAllFormats(date);
+        
+        if(isbdatePalindrome){
+        result.innerText="Your birthday is palindrome";
+        
+        }
+        else{
+            var [count, nextDate] = getNextPalindrome(date);
+            result.innerText= "The next palindrome date is "+ nextDate.day+"-"+nextDate.month+"-"+nextDate.year+ " and you missed it by "+count+" days "
+        }
+    }
+    else{
+        errorMsg.innerText="Please select the date birthdate";
+        errorMsg.style.display="block";
+    }
+}
+
+
+
 
  
 
