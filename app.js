@@ -151,6 +151,7 @@ showBtn.addEventListener("click", clickHandler);
 
 function clickHandler(){
     errorMsg.style.display="none";
+    result.style.display="none";
     if(bDate.value!==''){
         var bDateStr= bDate.value;
         
@@ -170,6 +171,7 @@ function clickHandler(){
         }
         else{
             var [count, nextDate] = getNextPalindrome(date);
+            result.style.display="block";
             result.innerText= "Your birthdate is not palindrome 🙁\nThe next palindrome date is "+ nextDate.day+"-"+nextDate.month+"-"+nextDate.year+ " and you missed it by "+count+" days "
         }
     }
