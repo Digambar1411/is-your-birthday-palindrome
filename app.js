@@ -165,12 +165,12 @@ function clickHandler(){
         var isbdatePalindrome = checkPalindromeForAllFormats(date);
         
         if(isbdatePalindrome){
-        result.innerText="Your birthday is palindrome";
+        result.innerText="Your birthday is palindrome 🎉";
         
         }
         else{
             var [count, nextDate] = getNextPalindrome(date);
-            result.innerText= "The next palindrome date is "+ nextDate.day+"-"+nextDate.month+"-"+nextDate.year+ " and you missed it by "+count+" days "
+            result.innerText= "Your birthdate is not palindrome 🙁\nThe next palindrome date is "+ nextDate.day+"-"+nextDate.month+"-"+nextDate.year+ " and you missed it by "+count+" days "
         }
     }
     else{
