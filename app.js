@@ -48,12 +48,10 @@ function getAllDateFormat(date){
 }
 
 var date1  = {
-    day:31,
-    month:12,
-    year:1900,
+    day:01,
+    month:01,
+    year:2020,
 };
-
-console.log(getAllDateFormat(date1))
 
 function checkPalidromeForAllFormats(date1){
     var allDates=getAllDateFormat(date1);
@@ -129,7 +127,25 @@ function getNextDate(date){
 
 }
 
-console.log(getNextDate(date1));
+
+function getNextPalindrome(date){
+    var nextDate= getNextDate(date);
+    count=0;
+    while(1){
+        count+=1;
+        var isPalindrome = checkPalidromeForAllFormats(nextDate);
+        if(isPalindrome){
+            break;
+
+        }
+        
+        nextDate=getNextDate(nextDate);
+    }
+
+    return [count, nextDate];
+}
+
+console.log(getNextPalindrome(date1));
 
  
 
@@ -137,5 +153,5 @@ console.log(getNextDate(date1));
 
     
 
-// console.log(checkPalidromeForAllFormats(date1));
+
 
