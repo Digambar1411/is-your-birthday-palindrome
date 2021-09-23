@@ -48,9 +48,9 @@ function getAllDateFormat(date){
 }
 
 var date1  = {
-    day:10,
-    month:11,
-    year:2001,
+    day:31,
+    month:12,
+    year:1900,
 };
 
 console.log(getAllDateFormat(date1))
@@ -61,13 +61,81 @@ function checkPalidromeForAllFormats(date1){
     for (var i=0; i<allDates.length; i++){
         if(isPalindrome(allDates[i])){
             var flag = true;
+            
             break;
         }
         
     }
     return flag;
+
+}
+function isLeapYear(year){
+    if(year%400===0){
+        return true;
+    }
+    if(year%100===0){
+        return false;
+        }
+    if(year%4===0){
+        return true;
+    }
+    
+    return false;
 }
 
+function getNextDate(date){
+    var day =date.day+1;
+    var month =date.month;
+    var year = date.year;
+    
+    var daysOfMonths=[31,28,31,30,31,30,31,31,30,31,30,31];
 
-console.log(checkPalidromeForAllFormats(date1));
+    
+    if(month===2){
+        if(isLeapYear(year)){
+            if(day>29){
+                day=1;
+                month+=1;
+            }
+        }    
+        else{
+            if(day>28){
+                day=1;
+                month+=1;
+            }
+        }
+            
+
+    }
+    
+    else{
+        if(day>daysOfMonths[month-1]){
+            day=1;
+            month+=1;
+        }
+        
+    }
+
+    if(month>12){
+        month=1;
+        year+=1;
+    }
+
+    return {
+        day:day,
+        month:month,
+        year:year
+    };
+
+}
+
+console.log(getNextDate(date1));
+
+ 
+
+    
+
+    
+
+// console.log(checkPalidromeForAllFormats(date1));
 
