@@ -222,7 +222,7 @@ function clickHandler(){
         
         if(isbdatePalindrome){
           
-            
+            result.style.display="block";
             result.innerText="Your birthday is palindrome 🎉";
         
         }
