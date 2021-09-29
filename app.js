@@ -122,6 +122,45 @@ function getNextDate(date){
 
 }
 
+function getPrevDate(date) {
+	var day = date.day - 1;
+	var month = date.month;
+	var year = date.year;
+
+	var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+	if (month === 2) {
+		if (isLeapYear(year)) {
+			if (day === 0) {
+				day = 29;
+				month--;
+			}
+		} else {
+			if (day === 0) {
+				day = 28;
+				month--;
+			}
+		}
+	} else {
+		if (day === 0 && month === 1) {
+			day = 31;
+			month = 12;
+			year--;
+		} else {
+			if (day === 0) {
+				month--;
+				day = daysInMonth[month - 1];
+			}
+		}
+	}
+
+	return {
+		day: day,
+		month: month,
+		year: year,
+	};
+}
+
 
 function getNextPalindrome(date){
     var nextDate= getNextDate(date);
@@ -138,6 +177,22 @@ function getNextPalindrome(date){
     }
 
     return [count, nextDate];
+}
+function getPreviousPalindrome(date){
+    var prevDate= getPrevDate(date);
+    counter=0;
+    while(1){
+        counter+=1;
+        var isPalindrome = checkPalindromeForAllFormats(prevDate);
+        if(isPalindrome){
+            break;
+
+        }
+        
+        prevDate=getPrevDate(prevDate);
+    }
+
+    return [counter, prevDate];
 }
 
 
@@ -166,13 +221,16 @@ function clickHandler(){
         var isbdatePalindrome = checkPalindromeForAllFormats(date);
         
         if(isbdatePalindrome){
-        result.innerText="Your birthday is palindrome 🎉";
+          
+            
+            result.innerText="Your birthday is palindrome 🎉";
         
         }
         else{
             var [count, nextDate] = getNextPalindrome(date);
+            var [counter, prevDate] = getPreviousPalindrome(date);
             result.style.display="block";
-            result.innerText= "Your birthdate is not palindrome 🙁\nThe next palindrome date is "+ nextDate.day+"-"+nextDate.month+"-"+nextDate.year+ " and you missed it by "+count+" days "
+            result.innerText= "Your birthdate is not palindrome 🙁\nThe previous palindrome date is "+ prevDate.day+"-"+prevDate.month+"-"+prevDate.year+ " and you missed it by "+counter+" days \nThe next palindrome date is "+ nextDate.day+"-"+nextDate.month+"-"+nextDate.year+ " and you missed it by "+count+" days"
         }
     }
     else{
